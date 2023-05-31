@@ -1,4 +1,56 @@
 .chat {
+  display: flex;
+  flex-direction: column;
   width: 70%;
   height: 100%;
+  background-color: #f0f2f5;
+  position: relative;
+}
+
+.chat__logo {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chat__messages {
+  height: 100%;
+  background-image: url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.chat__form {
+  display: flex;
+  padding: 0 10px;
+}
+
+.chat__form-wrapper {
+  padding: 10px;
+}
+
+.chat__input {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 10px;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    border-color: #56cf4c;
+  }
+}
+
+.form__button-chat {
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: none;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
