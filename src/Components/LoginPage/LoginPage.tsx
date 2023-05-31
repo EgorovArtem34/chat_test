@@ -93,7 +93,7 @@ const LoginPage = () => {
             ref={inputEl}
             required
           />
-          {formik.errors.id && formik.touched.id && <p className="form_error-text">{formik.errors.id}</p>}
+          {formik.errors.id && formik.touched.id && <p className="form__error-text">{formik.errors.id}</p>}
         </label>
         <br />
         <label htmlFor="token">
@@ -109,7 +109,7 @@ const LoginPage = () => {
             className={formik.errors.token && formik.touched.token || authFailed ? 'form__input-error' : ''}
             required
           />
-          {formik.errors.token && formik.touched.token && <p className="form_error-text">{formik.errors.token}</p>}
+          {formik.errors.token && formik.touched.token && <p className="form__error-text">{formik.errors.token}</p>}
         </label>
         <br />
         <div className="form__button-wrap">
