@@ -16,8 +16,10 @@ const useApi = () => {
     return data.stateInstance;
   };
 
-  const sayHello = () => 'hello';
-  return { getAccountStatus, sayHello };
+  const sendMessage = async (requestBody) => {
+
+  };
+  return { getAccountStatus, sendMessage };
 }
 
 export default useApi;
