@@ -1,7 +1,11 @@
 .aside {
   width: 30%;
   height: 100%;
-  background-color: #f0f2f5;
+  background-color: rgb(249, 247, 247);
+}
+
+.aside__menu {
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .menu__container {
@@ -9,6 +13,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  background-color: #f0f2f5;
+}
+
+.menu__settings {
+  display: flex;
+  align-items: center;
 }
 
 .menu__icon-avatar {
@@ -17,8 +27,41 @@
 }
 
 .menu__icon-btn {
+  cursor: pointer;
+}
+
+.menu__icon-btn,
+.contact__icon {
   width: 28px;
   height: 28px;
   padding-left: 5px;
   color: #54656f;
+}
+
+.aside__form {
+  padding: 5px;
+}
+
+.aside__contact {
+  max-height: 75px;
+  padding: 5px;
+
+  &:hover {
+    background-color: #e7e8e9;
+    cursor: pointer;
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contact.active {
+  background-color: #ccd0d1;
+}
+
+.contact__avatar {
+  padding: 10px;
 }
