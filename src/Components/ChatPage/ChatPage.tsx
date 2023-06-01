@@ -2,26 +2,29 @@ import Aside from "../Aside/Aside";
 import { IoLogoSnapchat } from 'react-icons/io';
 import { FaUserCircle } from 'react-icons/fa';
 import cn from 'classnames';
+import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import './chat.scss';
 import { MdMessage } from 'react-icons/md';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import useApi from "../../api/useApi";
-// import 'react-toastify/dist/ReactToastify.css';
-// import { useAppDispatch } from '../../hooks/hooks';
-// import { setChatId } from '../../store/chatSlice';
-// import './aside.scss';
+import { setMessage } from "../../store/chatSlice";
+import 'react-toastify/dist/ReactToastify.css';
 
-type RequestBodyType = {
-  chatId: string | null,
-  message: string | null,
-};
+const formatedMessage = (message: string) => (
+  {
+    from: 'you',
+    text: message,
+  }
+)
 
 const ChatPage = () => {
   const dispatch = useAppDispatch();
   const { sendMessage } = useApi();
-  const { activeChatId } = useAppSelector((state) => state.chatSlice);
+  const { activeChatId, messages } = useAppSelector((state) => state.chatSlice);
+  const currentMessages = activeChatId ? messages[activeChatId] || [] : [];
+  const { userData: { id, token } } = useAppSelector((state) => state.userSlice);
   const signUpSchema = yup.object().shape({
     message: yup.string().min(1, 'Не менее 1 символа').required('Обязательное поле')
   });
@@ -31,13 +34,18 @@ const ChatPage = () => {
       message: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: async (message) => {
-      const requestBody: RequestBodyType = {
-        chatId: activeChatId,
-        message: message ? message.message : '',
-      };
-      sendMessage(requestBody);
-      formik.resetForm();
+    onSubmit: async ({ message }) => {
+      try {
+        if (activeChatId !== null && id !== null && token !== null) {
+          sendMessage(activeChatId, message, id, token);
+          const formatMessage = formatedMessage(message);
+          dispatch(setMessage(formatMessage));
+          formik.resetForm();
+        }
+      } catch (err: any) {
+        console.log(err);
+        toast.error(err.message);
+      }
     },
   });
   const inputClass = () => cn('chat__input', {
@@ -58,7 +66,11 @@ const ChatPage = () => {
               </div>
             </div>
             <div className="chat__messages">
-              chat
+              {currentMessages.length > 0 ? currentMessages.map((message) => (
+                <div className="chat__message">
+                  <span><b>{message.from}</b>: {message.text}</span>
+                </div>
+              )) : null}
             </div>
             <div className="chat__form-wrapper">
               <form className="chat__form form" onSubmit={formik.handleSubmit}>

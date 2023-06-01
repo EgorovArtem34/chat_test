@@ -54,3 +54,19 @@
     transform: scale(1.1);
   }
 }
+
+.chat__messages {
+  display: grid;
+  align-content: end;
+  align-items: end;
+  justify-content: end;
+  padding: 10px;
+  overflow: auto;
+}
+
+.chat__message {
+  padding: 7px;
+  margin: 2px 0;
+  background-color: #85f378d1;
+  border-radius: 5px;
+}
