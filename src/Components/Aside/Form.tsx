@@ -8,7 +8,6 @@ import './aside.scss';
 const Form = () => {
   const dispatch = useAppDispatch();
   const { chatIds } = useAppSelector((state) => state.chatSlice);
-  console.log(chatIds);
   const signUpSchema = yup.object().shape({
     phoneNumber: yup
       .string()
@@ -31,7 +30,7 @@ const Form = () => {
       phoneNumber: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: async ({ phoneNumber }) => {
+    onSubmit: ({ phoneNumber }) => {
       const onlyDigitsPhoneNumber = phoneNumber.replace(/\D/g, '');
       dispatch(setChatId(`${onlyDigitsPhoneNumber}@c.us`));
       formik.resetForm();
