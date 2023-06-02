@@ -65,3 +65,26 @@
 .contact__avatar {
   padding: 10px;
 }
+
+@media (max-width: 510px) {
+
+  .contact__avatar {
+    padding: 3px;
+  }
+
+  .contact__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact__data>span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 330px) {
+
+  .contact__data>span {
+    font-size: 12px;
+  }
+}
