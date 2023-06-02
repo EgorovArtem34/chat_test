@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import routes from './utils/routes';
@@ -8,34 +8,32 @@ import { getLocalStorageUserData } from './utils/useLocalStorage';
 import { useAppDispatch } from './hooks/hooks';
 import { setAuth } from './store/userSlice';
 
-const PrivateRoute = ({ children }: any) => {
+const PrivateRoute = ({ children }: { children: React.ReactNode }): ReactElement | null => {
+  const dispatch = useAppDispatch();
   const userData = getLocalStorageUserData();
   if (!userData) {
-    return <Navigate to={routes.loginPagePath()} />
+    return <Navigate to={routes.loginPagePath()} />;
   }
-  const dispatch = useAppDispatch();
   dispatch(setAuth(userData));
-  return children;
+  return children as ReactElement;
 };
 
-const App = () => {
-
-  return (
-    <>
-      <Routes>
-        <Route
-          path={routes.defaultPath()}
-          element={(
-            <PrivateRoute>
-              <ChatPage />
-            </PrivateRoute>
-          )}
-        />
-        <Route path={routes.loginPagePath()} element={<LoginPage />} />
-      </Routes>
-      <ToastContainer />
-    </>
-  );
-};
+const App = () => (
+  <>
+    <Routes>
+      <Route
+        path={routes.defaultPath()}
+        element={(
+          <PrivateRoute>
+            <ChatPage />
+          </PrivateRoute>
+        )}
+      />
+      <Route path={routes.loginPagePath()} element={<LoginPage />} />
+      <Route path="*" element={<Navigate to={routes.defaultPath()} />} />
+    </Routes>
+    <ToastContainer />
+  </>
+);
 
 export default App;

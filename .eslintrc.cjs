@@ -27,6 +27,7 @@ module.exports = {
     'functional/no-conditional-statement': 0,
     'functional/no-conditional-statements': 0,
     'functional/no-expression-statements': 0,
+    "@typescript-eslint/no-explicit-any": 0,
     'functional/functional-parameters': 0,
     'functional/no-try-statement': 0,
     'functional/no-throw-statement': 0,

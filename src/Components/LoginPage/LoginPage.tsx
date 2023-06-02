@@ -29,9 +29,8 @@ const showToastify = (status: string | null) => {
       return;
     default:
       toast.error(`Неизвестное состояние аккаунта ${status}`);
-      return;
   }
-}
+};
 
 const LoginPage = () => {
   const { getAccountStatus } = useApi();
@@ -85,15 +84,16 @@ const LoginPage = () => {
           <input
             type="text"
             name="id"
+            id="id"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.id}
             placeholder="Введите ваш idInstance"
-            className={formik.errors.id && formik.touched.id || authFailed ? 'form__input-error' : ''}
+            className={(formik.errors.id && formik.touched.id) || authFailed ? 'form__input-error' : ''}
             ref={inputEl}
             required
           />
-          {formik.errors.id && formik.touched.id && <p className="form__error-text">{formik.errors.id}</p>}
+          {(formik.errors.id && formik.touched.id) && <p className="form__error-text">{formik.errors.id}</p>}
         </label>
         <br />
         <label htmlFor="token">
@@ -102,14 +102,15 @@ const LoginPage = () => {
           <input
             type="text"
             name="token"
+            id="token"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.token}
             placeholder="Введите ваш apiTokenInstance"
-            className={formik.errors.token && formik.touched.token || authFailed ? 'form__input-error' : ''}
+            className={(formik.errors.token && formik.touched.token) || authFailed ? 'form__input-error' : ''}
             required
           />
-          {formik.errors.token && formik.touched.token && <p className="form__error-text">{formik.errors.token}</p>}
+          {(formik.errors.token && formik.touched.token) && <p className="form__error-text">{formik.errors.token}</p>}
         </label>
         <br />
         <div className="form__button-wrap">
@@ -121,7 +122,7 @@ const LoginPage = () => {
             Отправить
           </button>
         </div>
-      </form >
+      </form>
     </div>
   );
 };

@@ -45,6 +45,7 @@ const Form = () => {
         <input
           type="tel"
           name="phoneNumber"
+          id="phoneNumber"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.phoneNumber}
@@ -63,7 +64,7 @@ const Form = () => {
           Создать чат
         </button>
       </div>
-    </form >
-  )
+    </form>
+  );
 };
 export default Form;

@@ -16,6 +16,12 @@
   background-color: #f0f2f5;
 }
 
+.button-borderNone {
+  outline: none;
+  background: none;
+  border: none;
+}
+
 .menu__settings {
   display: flex;
   align-items: center;
