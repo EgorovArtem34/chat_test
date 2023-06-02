@@ -56,9 +56,9 @@
 }
 
 .chat__messages {
-  display: grid;
-  align-content: end;
-  align-items: end;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
   justify-content: end;
   padding: 10px;
   overflow: auto;
@@ -67,6 +67,18 @@
 .chat__message {
   padding: 7px;
   margin: 2px 0;
-  background-color: #85f378d1;
+  max-width: 50%;
   border-radius: 5px;
+}
+
+.chat__message-you {
+  align-self: flex-end;
+  text-align: right;
+  background-color: #85f378d1;
+}
+
+.chat__message-companion {
+  align-self: flex-start;
+  text-align: left;
+  background-color: rgb(201 208 200 / 82%)
 }
